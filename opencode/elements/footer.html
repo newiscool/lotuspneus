@@ -1,0 +1,137 @@
+{% element 'snippets/newsletter' %}
+<div class="container block-visted_review">
+    {% if pages.current in ['catalog', 'search'] %}
+        {% if settings.history_position == 1 %}
+            <section class="products-visited ">
+                <h3 class="related-title">Últimos produtos visitados</h3>
+                {% element 'snippets/history' {
+                    'store.id': store.id,
+                    'pages.current': pages.current,
+                    'category.id': category.id,
+                } %}
+            </section>
+        {% endif %}
+    {% endif %}
+    <!--
+    <section class="products-reviews">
+        <h3>Avaliações da loja</h3>
+        {% element 'CustomerReview.reviews' %}
+    </section>
+    -->
+</div>
+<footer id="footer">
+    <div class="footer__container">
+        <nav class="footer__nav">
+            <ul class="footer__list">
+            <li class="footer__title-item">Institucional</li>
+                <li class="footer__list-item"><a href="/sobre-a-amamos-make">Sobre a {{store.name}}</a></li>
+                <li class="footer__list-item"><a href="/como-comprar">Como comprar</a></li>
+                <li class="footer__list-item"><a href="/seguranca">Seguranca</a></li>
+                <li class="footer__list-item"><a href="/envio">Envio</a></li>
+                <li class="footer__list-item"><a href="/pagamento">Pagamento</a></li>
+            </ul>
+            <ul class="footer__list">
+                <li class="footer__title-item">Dúvidas</li>
+                <li class="footer__list-item"><a href="/como-comprar" class="page__link">Como comprar</a></li>
+                <li class="footer__list-item"><a href="/politica-de-privacidade" class="page__link">Política de privacidade</a></li>
+                <li class="footer__list-item"><a href="/pagamento-envio" class="page__link">Formas de pagamento e envio</a></li>
+                <li class="footer__list-item"><a href="/politica-de-troca" class="page__link">Política de troca</a></li>
+                <li class="footer__list-item"><a href="{{ links.contact }}" class="page__link">Fale conosco</a></li>
+                <li class="footer__list-item"><a href="{{ links.central }}" class="page__link">Minha conta</a></li>
+                <li class="footer__list-item"><a href="{{ links.orders }}" class="page__link">Acompanhamento do pedido</a></li>
+            </ul>
+    
+            <ul class="footer__list">
+                <li class="footer__title-item">Atendimento</li>
+                <li class="footer__list-item support__contact">
+                    <span>Telefone</span>
+                    <strong>{{ settings.phones }}</strong>
+                </li>
+                <li class="footer__list-item support__contact">
+                    <span>Whatsapp</span>
+                    <strong>{{ settings.whatsapp }}</strong>
+                    <strong>{{ settings.whatsapp }}</strong>
+                    <strong>{{ settings.whatsapp }}</strong>
+                    <strong>{{ settings.whatsapp }}</strong>
+                </li>
+                <li class="footer__list-item support__contact support__contact-mail">
+                    <span>E-mail</span>
+                    <strong>{{ settings.emailum }}</strong>
+                </li>
+                <li class="footer__list-item support__contact support__contact-mail">
+                    <span>Horario de atendimento:</span>
+                    <strong>{{ settings.support }}</strong>
+                </li>
+            </ul>
+            <ul class="footer__list">
+                <li class="footer__list-item footer__title-item">Curta nossa página</li>
+                <li class="footer__list-item support__contact">
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Famamosmakeloja&tabs=timeline&width=320&height=200&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="320" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                </li>
+            </ul>
+        </nav>
+    
+        <section class="payment-and-security">
+            <div class="payment">
+                <strong class="footer__title-item">Formas de pagamento</strong>
+                <div class="payment__container">
+                    <div class="payment__credt">
+                        <em>Crédito</em>
+                        {% for payment in paymentMethods.credit %}
+                            <img src="{{ payment.thumbnail.url }}" alt="{{ payment.display_name }}">
+                        {% endfor %}
+                    </div>
+                    <div class="payment__debt">
+                        <em>Transferência Online, Boleto e Depósito</em>
+                        {% for payment in paymentMethods.order %}
+                            <img src="{{ payment.thumbnail.url }}" alt="{{ payment.display_name }}">
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            <div class="security">
+                <strong class="footer__title-item">Segurança</strong>
+                <div class="security__container">
+                    <div class="security__seal">{{ seals.ebit }} </div>
+                    <div class="security__seal">{{ seals.hackersafe }}</div>              
+                </div>
+            </div>
+        </section>
+        
+        <div class="designby">
+            <div class="designbyblock">                     
+            <figure class="brand-footer">
+                <a href="http://www.agencianewiscool.com.br" target="_blank" title="Agência new is cool" >
+                    <img src="{{ asset('img/newiscool.jpeg') }}" alt="Agência new is cool ">
+                </a>
+            </figure>            
+            <a href="https://lojavirtual.tray.com.br/" class="traylink" target="_blank">                        
+                <img src="{{ asset('img/tray-logo.png') }}" alt="Tray plataforma ">                        
+            </a>
+        </div>
+    </div>
+    <section class="copyright">
+        <div class="copyright__container">
+            <div class="copyright__text">{{ settings.copyright}}</div>             
+        </div>
+    </section>
+</footer>
+
+<script defer>
+
+jQuery( document ).ready(function() {
+    jQuery("body").addClass("active__body");
+    if (window.innerWidth < 992) {
+        jQuery( "svg.cat__icon.icon--arrow-bottom" ).on( "click", function() {
+            jQuery(this).addClass("rotateDrop");
+            if(jQuery(".dropdown-switcher").hasClass("active__dropdown")) {
+                jQuery(".dropdown-switcher").removeClass("active__dropdown");
+                jQuery("svg.cat__icon.icon--arrow-bottom").removeClass("rotateDrop");
+            } else {
+                jQuery(".dropdown-switcher").addClass("active__dropdown");
+            }
+        });
+    }
+});
+</script>

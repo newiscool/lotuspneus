@@ -1,0 +1,19 @@
+{
+  "name": "Tema base New is cool",
+  "homepage": "http://www.agencianewiscool.com.br",
+  "authors": [
+    "Alan Diego Dantas dos Santos "
+  ],
+  "description": "Tema de desenvolvimento opencode para a plataforma Tray",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": ">=3.2.0"
+  }
+}

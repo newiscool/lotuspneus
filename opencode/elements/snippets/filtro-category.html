@@ -1,14 +1,13 @@
 {% element 'FeaturesTopMenu.features_top_menu' %}
 
-<!-- 
-{% set categoriesFilter = ['28','30','32'] %}
+<!-- {% set categoriesFilter = ['131','139','141','143','145'] %}
 <form id="filter-car" method="GET" action="">  
     <div class="filter-description">
     <h3>Busque pelo filtro</h3>
     </div>
     <div class="filter-veicle">
         <select name="filtrar_modelo" id="filter-model" class="filter filter-modelo">
-            <option value="">Selecione um Modelo</option>
+            <option value="">Selecione o Fabricante</option>
             {% for category in categories %}
                 {% if category.id in categoriesFilter %}
                     <option value="{{ category.id }}">{{ category.name }}</option>
@@ -52,7 +51,7 @@
         }
 
         function loadSelectYear(years){
-            year.html('<option value="" selected>Selecione um ano</option>');
+            year.html('<option value="" selected>Selecione o modelo</option>');
 
             $.each(years, function(index,item){
                 year.append('<option data-url="'+item.Category.link.http.replace('http:', '')+'" value="'+item.Category.id+'">'+item.Category.name+'</option>');

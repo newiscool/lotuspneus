@@ -578,9 +578,12 @@ button.filter-button {
 .products-visited {
   display: flex;
   flex-wrap: wrap;
-  height: 300px;
+  height: auto;
   margin-bottom: 30px;
   padding: 0 30px;
+  @media (max-width:992px){
+    padding: 5px;
+  }
   #NavVisitados {
     width: 100%;
   }

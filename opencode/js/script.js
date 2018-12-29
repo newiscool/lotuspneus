@@ -6,6 +6,10 @@
 // 	}
 // }(jQuery);
 jQuery(document).ready(function ($) {
+    $('.botao-commerce.botao-novo-cadastro').click(function(){
+        $(this).closest('form').each(function(){ this.submit() });
+    });
+
     +function ($) {
         if (jQuery.fn.owlCarousel) {
             var $trayBanner = jQuery('#bannerJS');
@@ -18,9 +22,9 @@ jQuery(document).ready(function ($) {
                 autoHeight: true,
                 autoPlay: true,
                 goToFirstSpeed: 2000,
-                navigation: true,
+                navigation: false,
                 navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
-                pagination: false,
+                pagination: true,
                 paginationSpeed: 1000,
                 singleItem: true,
                 stopOnHover: true
@@ -53,7 +57,7 @@ jQuery(document).ready(function ($) {
 
             jQuery(".brands__list ul").owlCarousel({
                 autoPlay: false,
-                itemsCustom: [[320, 3], [768, 3], [992, 5], [1200, 5]],
+                itemsCustom: [[320, 2], [768, 2], [992, 4], [1200, 4]],
                 itemsScaleUp: false,
                 itemsTabletSmall: false,
                 navigation: true,
@@ -372,3 +376,82 @@ jQuery( document ).ready(function() {
    jQuery('.acoes').find('input:image').each(function() {
     jQuery("<input type='submit' />").attr({ name: 'btn-filtrar', value: 'Filtrar' }).insertBefore(this);
  }).remove();
+
+
+
+
+
+ jQuery("svg.search__icon").click(function () {    
+    var item = jQuery(this).closest('.condicoes-item');
+    var hasOpen = !item.hasClass('drop');
+    jQuery('.condicoes-item').removeClass('drop');
+    if(hasOpen) item.addClass("drop");
+    else{ item.removeClass("drop") }
+
+});
+
+
+jQuery(".closeModalinfo").click(function () {    
+    jQuery('.condicoes-item').removeClass('drop');
+});
+
+if (window.innerWidth < 992) {
+    // jQuery( "svg.arrow-down" ).on( "click", function() {
+    //     if(jQuery(".nv-03").hasClass("active__dropdown-novo")) {
+    //         jQuery(".nv-03").removeClass("active__dropdown-novo");
+    //     } else {
+    //         jQuery(".nv-03").addClass("active__dropdown-novo");
+    //     }
+    // });
+
+
+    jQuery("svg.arrow-down").click(function () {    
+        var item = jQuery(this).closest('.dropdown-nv2');
+        var hasOpen = !item.hasClass('drop');
+        jQuery('.dropdown-nv2').removeClass('drop');
+        if(hasOpen) item.addClass("drop");
+        else{ item.removeClass("drop") }
+    
+    });
+
+    jQuery(".title-triger").click(function () {    
+        var item = jQuery(this).closest('.filter-block');
+        var hasOpen = !item.hasClass('drop');
+        jQuery('.filter-block').removeClass('drop');
+        if(hasOpen) item.addClass("drop");
+        else{ item.removeClass("drop") }
+    
+    });
+
+
+    jQuery("svg.search__icon").click(function () {    
+        var item = jQuery(this).closest('.dropdown-content');
+        var hasOpen = !item.hasClass('drop');
+        jQuery('.dropdown-content').removeClass('drop');
+        if(hasOpen) item.addClass("drop");
+        else{ item.removeClass("drop") }
+    
+    });
+
+    jQuery(".closeModalinfo").click(function () {    
+        jQuery('.dropdown-content').removeClass('drop');
+    });
+}
+
+
+jQuery(document).ready(function(){
+    jQuery("#content div:nth-child(1)").show();
+    jQuery(".abas li:first div").addClass("selected");       
+    jQuery(".aba").click(function(){
+        jQuery(".aba").removeClass("selected");
+        jQuery(this).addClass("selected");
+        var indice = jQuery(this).parent().index();
+        indice++;
+        jQuery("#content div").hide();
+        jQuery("#content div:nth-child("+indice+")").show();
+    });
+    jQuery(".aba").hover(
+        function(){jQuery(this).addClass("ativa")},
+        function(){jQuery(this).removeClass("ativa")}
+    );              
+});

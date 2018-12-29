@@ -6,6 +6,10 @@
     right: 0;
     top: 0;
     z-index: 999;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     @include transition();
 
     //.float-menu {
@@ -125,6 +129,7 @@
 .brand {
   position: relative;
   z-index: 200;
+  max-width: 85%;
 
   @media (max-width: 1200px) {
     margin: 0;
@@ -325,7 +330,7 @@
       }
 
       .env-brand {
-        flex: 0 0 33%;
+        flex: 0 0 40%;
         width: auto;
       }
     

@@ -6,15 +6,14 @@
         <section class="product__general-information">
             <div class="header_name-mobile hidden-md hidden-lg">
                 <div class="product-info__item "><span class="product-info__desc">{{ product.brand }}</span></div>
-                <h1 class="product__name">{{ product.name }}</h1>
                 {% if product.ranking %}
                 <div class="product__rating-wrapper">
                     <span class="product__rating__stars" data-stars-count="{{ product.ranking.rating }}">
                         <span class="star{{ product.ranking.rating }}"></span><span class="ranking-nota-final"></span>
-                        <a href="#descricaoanchor" id="avalieClick">Avalie este produto</a>
                     </span>
                 </div>
                 {% endif %}
+                <h1 class="product__name">{{ product.name }}</h1>
             </div>
             <div class="block_offer">
                 <div class="product__offer">
@@ -29,7 +28,16 @@
         <section class="product__general-price-information price-shipping__block-bottom">
             <div class="price-shipping__block">
                 <header>
-                    <div class="product-info__item hidden-xs hidden-sm"><span class="product-info__desc">{{ product.brand }}</span></div>
+                    <div class="brand-rating-block">
+                        <div class="product-info__item hidden-xs hidden-sm"><span class="product-info__desc">{{ product.brand }}</span></div>
+                        {% if product.ranking %}
+                        <div class="product__rating-wrapper">
+                            <span class="product__rating__stars" data-stars-count="{{ product.ranking.rating }}">
+                                <span class="star{{ product.ranking.rating }}"></span><span class="ranking-nota-final"></span>
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
                     <h1 class="product__name hidden-xs hidden-sm">{{ product.name }}</h1>
                     <ul class="product-info__list">
                         <!-- <li class="product-info__item">
@@ -37,14 +45,6 @@
                             <span class="product-info__desc">{{ product.id }}</span>
                         </li> -->
                     </ul>
-                    {% if product.ranking %}
-                    <div class="product__rating-wrapper">
-                        <span class="product__rating__stars" data-stars-count="{{ product.ranking.rating }}">
-                            <span class="star{{ product.ranking.rating }}"></span><span class="ranking-nota-final"></span>
-                            <a href="#descricaoanchor" id="avalieClick">Avalie este produto</a>
-                        </span>
-                    </div>
-                    {% endif %}
                     <form id="form_comprar" method="post" data-app="product.buy-form" action="{{ links.cart_add ~ product.id }}">
                         {{ productHelper.pricing(price) }}
                         {{ productHelper.gifts() }}
@@ -62,11 +62,139 @@
                         <div class="product__kit">{{ productHelper.kit() }}</div>
                         <div class="product__shipping">{{ productHelper.shipping() }}</div>
                     </form>
+                    <div class="payment__container-product">
+                        <div class="payment__credt">
+                            <div class="payment__credt-block">
+                                <em>Crédito</em>
+                                {% for payment in paymentMethods.credit %}
+                                    <img src="{{ payment.thumbnail.url }}" alt="{{ payment.display_name }}">
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="payment__debt">
+                            <div class="payment__debt-block">
+                                <em>Transferência Online, Boleto e Depósito</em>
+                                {% for payment in paymentMethods.order %}
+                                    <img src="{{ payment.thumbnail.url }}" alt="{{ payment.display_name }}">
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                 </header>
+                <div class="bloco_condicoes">
+                        <ul class="lista_condicoes">
+                            <li  class="condicoes-item">
+                                <svg class="cat__icon icon--arrow-bottom "><use xlink:href="#icon-arrow-bottom"></use></svg>
+                                <svg class="search__icon icon--search"><use xlink:href="#icon-cart"></use> </svg>
+                                <span class="label-item">Como Comprar</span>
+                                <div class="dropdown-content">
+                                        <button class=" closeModalinfo"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        <span>
+                                            <p class="first-paragraph hidden-lg"><strong>Como comprar?</strong></p>
+                                            <p><strong>Para comprar na Lotus Pneus é muito fácil:</strong></p>
+                                            <p>1) Navegue entre nossos diversos  produtos e clique sobre o botão <strong>COMPRAR</strong> para adicionar um produto ao carrinho de compras. </p>
+                                            <p>2) Após selecionar todos produtos clique no ícone do <strong>CARRINHO </strong> para iniciar o processo de finalização.</p>
+                                            <p>3) Calcule o frete e clique sobre o botão <strong>FINALIZAR PEDIDO.</strong> </p>
+                                            <p>4) Faça seu login caso já tenha cadastro na loja, ou faça seu cadastro, é rápido e simples.</p>
+                                            <p>5) Você pode escolher a forma de pagamento entre boleto ou cartão de crédito.</p>
+                                            <p>6) Agora basta clicar <strong>FINALIZAR PEDIDO.</strong> Pronto, seu pedido já está feito, mais informações serão enviadas por e-mail. ;)</p>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="condicoes-item">
+                                <svg class="cat__icon icon--arrow-bottom "><use xlink:href="#icon-arrow-bottom"></use></svg>
+                                <svg class="search__icon icon--search"><use xlink:href="#icon-troca-facil"></use> </svg>
+                                <span class="label-item">Troca Fácil</span>
+                                <div class="dropdown-content">
+                                    <button class=" closeModalinfo"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <span>
+                                        <p class="first-paragraph hidden-lg"><strong>Troca fácil</strong></p>
+                                        <p>Você pode trocar qualquer produto, seja por insatisfação com a compra, 
+                                        pedido incorreto ou mesmo arrependimento.</p>
+                                        <p>É possível fazer a solicitação de troca em até 30 (trinta) dias corridos após a entrega. 
+                                        Para isso, o produto deverá estar em sua embalagem original, sem indícios 
+                                        de uso e/ou danos no produto. Para os casos de insatisfação com o 
+                                        produto adquirido ou arrependimento da compra, cabe ao cliente 
+                                        arcar com o custo do frete referente ao envio do produto para troca.</p>
+                                        <p>Solicite a troca através do e-mail: contato@lotuspneusdf.com</p>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="condicoes-item">
+                                <svg class="cat__icon icon--arrow-bottom "><use xlink:href="#icon-arrow-bottom"></use></svg>
+                                <svg class="search__icon icon--search"><use xlink:href="#icon-delivery-truck"></use> </svg>
+                                <span class="label-item">Prazos e Entrega</span>
+                                <div class="dropdown-content">
+                                    <button class=" closeModalinfo"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <span>
+                                        <p class="first-paragraph hidden-lg"><strong>Prazos e entregas</strong></p>
+                                        <p>Todos pedidos são enviados em até 1 dia útil após a 
+                                        confirmação de pagamento. </p>
+                                        <p>O prazo para a entrega varia de acordo com a forma de envio 
+                                        escolhida.</p>
+                                        <p>Você poderá rastrear a entrega através do código de rastreio, 
+                                        que é enviado via e-mail. Se persistir dúvidas, entre em contato 
+                                        conosco através do telefone: <strong>(61) 3346-3203</strong>, ou por e-mail: <strong>contato@lotuspneusdf.com </strong></p>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="condicoes-item">
+                                <svg class="cat__icon icon--arrow-bottom "><use xlink:href="#icon-arrow-bottom"></use></svg>
+                                <svg class="search__icon icon--search"><use xlink:href="#icon-tools"></use> </svg>
+                                <span class="label-item">Instalação na loja</span>
+                                <div class="dropdown-content">
+                                    <button class=" closeModalinfo"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <p class="title-abas">Consulte a nossa localização</p>
+                                    <p class="first-paragraph"><strong>Instalação em Brasília</strong></p>
+                                    <div class="TabControl">
+                                        <div id="header-abas">
+                                            <ul class="abas">
+                                                <li>
+                                                    <div class="aba">
+                                                        <span>Loja 1</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="aba">
+                                                        <span>Loja 2</span>
+                                                    </div>
+                                                </li>
+                                            
+                                            </ul>
+                                        </div>
+                                        <div id="content">
+                                            <div class="conteudo">
+                                                <span>
+                                                    <p>QI 01 Lote 31/33, Taguatinga, Brasília - DF, 72135-010</p>
+                                                    <div class="bloco-frete">
+                                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5429.133110265005!2d-48.07579894654918!3d-15.805175262670206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3aabe7856c13%3A0x119b3d23ae92545b!2sLotus+Pneus+e+Rodas+-+Taguatinga!5e0!3m2!1spt-BR!2sbr!4v1545411786029" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <div class="conteudo">
+                                                <span>
+                                                    <p>QMSW 02 Conj. C Lote 14, Sudoeste, Brasília - DF, 72135-010</p>
+                                                    <div class="bloco-frete">
+                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.312477536544!2d-47.920918384654925!3d-15.787469089055527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3a7e39d09663%3A0x43ca72896b30df86!2sLotus+Pneus+e+Rodas+-+Sudoeste!5e0!3m2!1sen!2sbr!4v1546026845787" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                        
+                                   
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
             <div class="social-midias">{{ productHelper.social() }}</div>
         </div>
     </section>
-    <section id="ProdBlock" class="product__tabs col-xs-12 ">
+
+
+
+    <section id="ProdBlock" class="product__tabs ">
         <a name="formaPagto"></a>
         <div id="descricao" class="prodBox dispblock drop">
             <div class="board">
@@ -97,7 +225,7 @@
     {% endif %}
     </div>
     {% if product.related_products %}
-        <section class="col-xs-12 product__related">
+        <section class="product__related">
             <h4  class="banners-extra__title title--main">Produtos Recomendados</h4>
             <div class="product__related">
                 {% element 'snippets/showcase' {"products": product.related_products } %}

@@ -157,6 +157,7 @@
           }
       }
 
+
       &.support__office-hours{
           font-size: 12px;
           color: #222;
@@ -309,7 +310,7 @@
   .copyright{
       text-align: center;
       font-size: 11px;
-      color:$dark-gray;
+      color:#fff;
       padding: 40px 0;
   }
 }
@@ -388,4 +389,7 @@ h3.about-title {
     font-size: 20px;
     border-bottom: 1px solid $cor01;
     margin: 0;
+}
+.support__contact_facebook{
+    max-width: 300px !important;
 }

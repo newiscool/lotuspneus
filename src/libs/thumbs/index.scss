@@ -1,7 +1,6 @@
-
 .thumbs {
-    width 					: 90px;
-    margin-right                : 10px;
+    width: 90px;
+    margin-right: 10px;
     @media (max-width:992px){
         margin: 15px 0;        
         width: 300px;
@@ -12,13 +11,12 @@
     }
     
     &__list {
-        display 				: block;
-        text-align              : center;
+        display: block;
+        text-align: center;
         
         &:not(.slick-initialized) {
-            display 			: flex;
-            justify-content 	: center;
-            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
             .thumbs__item{
                 margin-bottom: 5px;
             }
@@ -26,11 +24,11 @@
     }	
 
     &__link {
-        position 				: relative;
-        display 				: block;
-        padding                 : 0 5px;
-        max-width 				: 100%;
-        overflow 				: hidden;
+        position: relative;
+        display: block;
+        padding: 0 5px;
+        max-width: 100%;
+        overflow: hidden;
     }   
 
 }

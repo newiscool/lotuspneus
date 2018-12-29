@@ -20,47 +20,90 @@
     <div class="nav-container">
         <ul class="nv-01">
             {% for category in categories %}
-                {% if loop.index <= 7 %}
-                <li class="cat_id-{{ category.id }} dropdown">
-                    <a href="{{ category.link }}">
-                        <svg class="category__icon icon-{{ category.id }} hidden-xs hidden-sm">
-                            <use xlink:href="#icon-{{ category.id }}"></use>
-                        </svg>            
-                        {{ category.name }}
-                    </a>
-                    {% if category.children %}
-                    <svg class="cat__icon icon--arrow-bottom hidden-lg hidden-md">
-                        <use xlink:href="#icon-arrow-bottom"></use>
-                    </svg>
-                    {% endif %}
-                    {% if category.children %}
-                    <div class="dropdown-switcher">
-                        <div class="nv-02">
-                            <ul class="nv-02">
-                                {% for child in category.children %}
-                                <li class="cat_id-{{ child.id }} dropdown">
-                                    <a href="{{ child.link }}">
-                                        {{child.name }}
-                                    </a>
-
-                                    {% if child.children %}
-                                        <ul class="nv-03">
-                                        {% for child2 in child.children %}
-                                            <li class="cat_id-{{ child2.id }} dropdown">
-                                                <a href="{{ child2.link }}">{{child2.name }}</a>
-                                            </li>
-                                        {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    {% endif %}
-                </li>
+            {% if loop.index <= 7 %}
+            <li class="cat_id-{{ category.id }} dropdown">
+                <a href="{{ category.link }}">
+                    <svg class="category__icon icon-{{ category.id }}">
+                        <use xlink:href="#icon-{{ category.id }}"></use>
+                    </svg>            
+                    {{ category.name }}
+                </a>
+                {% if category.children %}
+                <svg class="cat__icon icon--arrow-bottom">
+                    <use xlink:href="#icon-arrow-bottom"></use>
+                </svg>
                 {% endif %}
+                {% if category.children %}
+                <div class="dropdown-switcher">
+                    <div class="nv-02">
+                        <ul class="nv-02">
+                            {% for child in category.children %}
+                            <li class="cat_id-{{ child.id }} dropdown">
+                                <a href="{{ child.link }}">
+                                    {{child.name }}
+                                </a>
+
+                                {% if child.children %}
+                                    <ul class="nv-03">
+                                    {% for child2 in child.children %}
+                                        <li class="cat_id-{{ child2.id }} dropdown">
+                                            <a href="{{ child2.link }}">{{child2.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </li>
+            {% endif %}
             {% endfor %}
+            <li class="all_departments dropdown">
+                <div class="all-dpt">
+                    <span>VER</span>
+                    <svg class="all_departments__icon icon--menu">
+                        <use xlink:href="#icon-more"></use>
+                    </svg>
+                </div>
+                <div class="dropdown-switcher dropdown__all-departaments">
+                    <ul class="nv-02">
+                    {% for category in categories %}
+                        {% if loop.index <= limit or not limit %} 
+                            <li class="cat_id-{{ category.id }} all_nv-02-itens">
+                                <a href="{{ category.link }}"> <span class="all_nv-name">{{category.name }}</span></a>
+                                {% if category.children %}
+                                    <svg class="cat__icon icon--arrow-bottom hidden-lg hidden-md">
+                                        <use xlink:href="#icon-arrow-bottom"></use>
+                                    </svg>
+                                {% endif %}
+                              
+                                {% if category.children %}
+                                <ul class="nv-03 all__departaments-child">                                    
+                                    {% for child in category.children %}
+                                    <li class="cat_id-{{ child.id }} itens-category-all">
+                                        <a href="{{ child.link }}" class="nv-03">{{ child.name}}</a>
+                                        {% if child.children %}
+                                            <ul class="nv-04">
+                                            {% for child in category.children %}
+                                                <li class="cat_id-{{ child.id }} nv-04">
+                                                    <a href="{{ child.link }}" class="nv-04">{{ child.name}}</a>
+                                                </li>
+                                            {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
